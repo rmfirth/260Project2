@@ -3,6 +3,7 @@ $(document).ready(function() {
        $(this).blur();
     });
 
+
     var createQuestion = function() {
         var currentQuestion = questions[questionNumber];
         var questionContent = currentQuestion["question"];
@@ -15,6 +16,7 @@ $(document).ready(function() {
             "<input type=\"radio\" name=\"options\" autocomplete=\"off\">";
         $("#current-question").html("Question " + (questionNumber + 1));
         $("#question-content").html(questionContent);
+        $("#question-submission").html("");
         for(var i = 0; i < numOptions; i++) {
             console.log(input + allAnswers[i] + "\" />");
             $("#question-submission").append(input + allAnswers[i] + "</label><br>");
@@ -30,7 +32,7 @@ $(document).ready(function() {
         score = 0;
         $("#configureQuiz").hide();
         $("#question-section").show();
-        var triviaUrl = "https://opentdb.com/api.php?amount=10";
+        var triviaUrl = buildConfiguredURL();
         $.ajax({
             url : triviaUrl,
             dataType : "json",
@@ -43,6 +45,19 @@ $(document).ready(function() {
     });
 
     $("#submit-answer").click(function() {
-        ++questionNumber;
+        var number_questions = $("#num-questions-input").find(":selected").val();
+        //var userAnswer = $("input[name='options']:checked").text();
+        var userAnswer = $('input:radio:checked').next('label:first').html();
+        console.log(userAnswer);
+
+        if(++questionNumber === number_questions)
+        {
+
+        }
+        else
+        {
+
+        }
+        createQuestion();
     })
 });
