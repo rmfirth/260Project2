@@ -35,3 +35,11 @@ section .section-title.main-title {
 .btn.active {
     background-color: #575458;
 }
+.configuration-stack {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.configuration-stack > .stack-item:not(:last-child) {
+  margin-bottom: 15px;
+}
