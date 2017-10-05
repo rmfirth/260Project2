@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Trivia Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title>Trivia Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
@@ -14,18 +16,27 @@
         <h1 class="section-title main-title">Trivia Quiz</h1>
     </section>
 
-    <section>
+    <section id="configureQuiz">
         <h3 class="section-title">Configure your quiz!</h3>
-        <button>Build quiz</button>
+        <button id="buildQuiz" class="btn btn-dark">Build quiz</button>
     </section>
 
-    <section>
-        <h3 class="section-title">Questions:</h3>
+    <section id="question-section">
+        <h3 id="current-question" class="section-title"></h3>
+        <h4 id="question-content"></h4>
+        <div data-toggle="buttons" id="question-submission"></div>
         <div id="question-holder">
 
         </div>
-        <button>Submit answers</button>
+        <button id="submit-answer" class="btn btn-dark">Submit Answer</button>
     </section>
+
+<footer>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+</footer>
 
 </body>
 </html>
