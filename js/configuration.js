@@ -6,9 +6,9 @@ numQuestions = [
     {display: "20", value: "20"}];
 category = [
     {display: "General Knowledge", value: "9"},
-    {display: "Video Games", value: 15},
-    {display: "Computers", value: 18},
-    {display: "Gadgets", value: 30}];
+    {display: "Video Games", value: "15"},
+    {display: "Computers", value: "18"},
+    {display: "Gadgets", value: "30"}];
 difficulty = [
     {display: "Easy", value: "easy"},
     {display: "Medium", value: "medium"},
@@ -16,6 +16,8 @@ difficulty = [
 type = [
     {display: "Multiple Choice", value: "multiple"},
     {display: "True/False", value: "boolean"}];
+
+var BASE_URL = "https://opentdb.com/api.php";
 
 // set dropdowns, put click listener on configure button
 $(document).ready(function() {
@@ -25,7 +27,7 @@ $(document).ready(function() {
   $("#type-input").html(buildDropdownInner(type));
 
   $("#build-quiz-button").click(function() {
-      buildConfigurationAPISnippet();
+      buildConfiguredURL();
   });
 });
 
@@ -44,18 +46,18 @@ function buildDropdownInnerLine(value) {
 }
 
 // returns a string to be used when hitting the API
-function buildConfigurationAPISnippet() {
+function buildConfiguredURL() {
     var numQuestions = $("#num-questions-input").find(":selected").val();
     var category = $("#category-input").find(":selected").val();
     var difficulty = $("#difficulty-input").find(":selected").val();
     var type = $("#type-input").find(":selected").val();
 
-    var snippet = "";
-    snippet += "amount=" + numQuestions + "&";
-    snippet += "category=" + category + "&";
-    snippet += "difficulty=" + difficulty + "&";
-    snippet += "type=" + type;
+    var url = BASE_URL + "?";
+    url += "amount=" + numQuestions + "&";
+    url += "category=" + category + "&";
+    url += "difficulty=" + difficulty + "&";
+    url += "type=" + type;
 
-    console.log(snippet);
-    return snippet;
+    console.log(url);
+    return url;
 }
