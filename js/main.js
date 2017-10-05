@@ -25,7 +25,7 @@ $(document).ready(function() {
     var questionNumber = 0;
     var score = 0;
     var questions = 0;
-    $("#buildQuiz").click(function() {
+    $("#build-quiz-button").click(function() {
         questionNumber = 0;
         score = 0;
         $("#configureQuiz").hide();
