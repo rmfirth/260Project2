@@ -27,3 +27,12 @@ section .section-title.main-title {
     margin-top: 30px;
     font-size: 48px;
 }
+
+.configuration-stack {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.configuration-stack > .stack-item:not(:last-child) {
+  margin-bottom: 15px;
+}

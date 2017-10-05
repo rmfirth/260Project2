@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <title>Trivia Game</title>
 
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/configuration.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
@@ -14,8 +18,29 @@
         <h1 class="section-title main-title">Trivia Quiz</h1>
     </section>
 
+    <!-- configuration stuff -->
     <section>
         <h3 class="section-title">Configure your quiz!</h3>
+
+        <div class="configuration-stack">
+          <div class="stack-item">
+            <span>Number of questions:</span>
+            <select id="num-questions-input"></select>
+          </div>
+          <div class="stack-item">
+            <span>Category</span>
+            <select id="category-input"></select>
+          </div>
+          <div class="stack-item">
+            <span>Difficulry</span>
+            <select id="difficulty-input"></select>
+          </div>
+          <div class="stack-item">
+            <span>Question Type</span>
+            <select id="type-input"></select>
+          </div>
+        <div>
+
         <button>Build quiz</button>
     </section>
 
