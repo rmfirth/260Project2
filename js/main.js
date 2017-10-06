@@ -9,19 +9,25 @@ $(document).ready(function() {
         var questionContent = currentQuestion["question"];
         var numOptions = currentQuestion["incorrect_answers"].length + 1;
         var allAnswers = currentQuestion["incorrect_answers"].slice(0);
-        console.log(numOptions);
+        // console.log(numOptions);
         allAnswers[numOptions - 1] = currentQuestion["correct_answer"];
-        console.log(allAnswers);
-        var input = "<label class=\"btn btn-secondary\">\n" +
-            "<input type=\"radio\" name=\"options\" autocomplete=\"off\">";
+        // console.log(allAnswers);
+        allAnswers = shuffle(allAnswers);
+        var input1 = "<label class=\"btn btn-secondary\" for=\"";
+        var input2 = "<input type=\"radio\" name=\"options\" autocomplete=\"off\" id=\"";
+
         $("#current-question").html("Question " + (questionNumber + 1));
         $("#question-content").html(questionContent);
         $("#question-submission").html("");
         for(var i = 0; i < numOptions; i++) {
-            console.log(input + allAnswers[i] + "\" />");
-            $("#question-submission").append(input + allAnswers[i] + "</label><br>");
+            var myId = "answer" + i;
+            // console.log(input + allAnswers[i] + "\" />");
+            var inputElement = input1 + (myId + "\" >");
+            var inputElement2 = input2 + (myId + "\" />" );
+            $("#question-submission").append(inputElement + inputElement2 + allAnswers[i] + "</label><br>");
 
         }
+        $("#question-section").fadeIn("slow");
     }
 
     var questionNumber = 0;
@@ -30,16 +36,15 @@ $(document).ready(function() {
     $("#build-quiz-button").click(function() {
         questionNumber = 0;
         score = 0;
-        $("#configureQuiz").hide();
-        $("#question-section").show();
+        $("#configureQuiz").fadeOut(1000);
         var triviaUrl = buildConfiguredURL();
         $.ajax({
             url : triviaUrl,
             dataType : "json",
             success : function(parsed_json) {
                 questions = parsed_json["results"];
-                console.log(questions);
-                createQuestion();
+                //console.log(questions);
+                setTimeout(createQuestion, 1000);
             }
         });
     });
@@ -47,17 +52,52 @@ $(document).ready(function() {
     $("#submit-answer").click(function() {
         var number_questions = $("#num-questions-input").find(":selected").val();
         //var userAnswer = $("input[name='options']:checked").text();
-        var userAnswer = $('input:radio:checked').next('label:first').html();
+        var userAnswer = $('input[type="radio"]:checked').attr("id");
+        userAnswer = $("label[for='" + userAnswer + "']").text();
+        console.log(questions[questionNumber]["correct_answer"]);
         console.log(userAnswer);
-
-        if(++questionNumber === number_questions)
+        if(userAnswer == questions[questionNumber]["correct_answer"])
         {
-
+            score++;
+            alert("Correct!");
         }
         else
         {
-
+            alert("Wrong! The correct answer is " + questions[questionNumber]["correct_answer"]);
         }
-        createQuestion();
+
+        if(questionNumber + 1 == number_questions)
+        {
+            alert("Game Over!\nYour Score is: " + score + "/" + number_questions);
+            $("#question-section").hide();
+            $("#configureQuiz").show();
+        }
+        else
+        {
+            questionNumber++;
+            $("#question-section").fadeOut(1000);
+            setTimeout(createQuestion, 1000);
+        }
     })
 });
+
+
+//Source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
