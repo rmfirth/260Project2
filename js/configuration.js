@@ -8,7 +8,8 @@ category = [
     {display: "General Knowledge", value: "9"},
     {display: "Video Games", value: "15"},
     {display: "Computers", value: "18"},
-    {display: "Gadgets", value: "30"}];
+    {display: "Films", value: "11"},
+    {display: "Science and Nature", value: "17"}];
 difficulty = [
     {display: "Easy", value: "easy"},
     {display: "Medium", value: "medium"},

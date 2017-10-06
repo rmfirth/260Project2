@@ -16,7 +16,7 @@ $(document).ready(function() {
         var input1 = "<label class=\"btn btn-secondary\" for=\"";
         var input2 = "<input type=\"radio\" name=\"options\" autocomplete=\"off\" id=\"";
 
-        $("#current-question").html("Question " + (questionNumber + 1));
+        $("#current-question").html("Question " + (questionNumber + 1) + ":");
         $("#question-content").html(questionContent);
         $("#question-submission").html("");
         for(var i = 0; i < numOptions; i++) {
